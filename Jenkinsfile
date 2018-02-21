@@ -18,6 +18,9 @@ node {
                 }
             )
         }
+    } catch (e) {
+        echo "nooooo" 
+        //slackSend channel: '#nais-internal', message: ":shit: nsync of ${clusterName} by Mr. ${env.BUILD_USER} failed: ${e.getMessage()}. ${lastCommit}\nSee log for more info ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
     }
 }
 //pipeline {
