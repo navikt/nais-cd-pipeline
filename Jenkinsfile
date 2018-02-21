@@ -9,7 +9,7 @@ pipeline {
         
         stage("deploy nais-ci") {
             steps {
-                build "deploy_nais-ci"
+                build "nsync_nais-ci"
             }
         }
 
@@ -17,10 +17,10 @@ pipeline {
             steps {
                 parallel (
                     "nais-dev" : {
-                        build "deploy_nais-dev"
+                        build "nsync_nais-dev"
                     },
                     "nais-ci" : {
-                        build "deploy_nais-ci"
+                        build "nsync_nais-ci"
                     }
                 )
             }
