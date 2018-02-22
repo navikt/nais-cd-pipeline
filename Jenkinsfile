@@ -11,11 +11,11 @@ node {
 
         stage("deploy !prod"){
             parallel (
-                "nais-dev" : {
-                    build "nsync_nais-dev"
+                "preprod-fss" : {
+                    build "nsync_preprod-fss"
                 },
-                "nais-ci" : {
-                    build "nsync_nais-ci"
+                "preprod-sbs" : {
+                    build "nsync_preprod-sbs"
                 }
             )
         }
