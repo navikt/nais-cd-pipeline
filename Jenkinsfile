@@ -24,7 +24,7 @@ node {
                 git credentialsId: 'navikt-ci', url: "https://github.com/navikt/nais-tpa.git"
             }
 
-            lastCommit = sh(script: "/bin/sh ./echo_recent_git_log.sh", returnStdout: true).trim()
+            lastCommit = sh(script: "/bin/sh ./echo_last_commit.sh", returnStdout: true).trim()
 
             slackSend channel: '#nais-internal', message: "pipeline triggered:\n${lastCommit}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
         }
