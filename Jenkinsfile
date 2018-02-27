@@ -5,7 +5,6 @@ node {
     try {
         stage("init") {
             git credentialsId: 'navikt-ci', url: "https://github.com/navikt/nais-cd-pipeline.git"
-            
 
             sh("rm -rf naisible nais-inventory nais-tpa nais-platform-apps")
 
