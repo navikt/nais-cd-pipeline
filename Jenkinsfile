@@ -26,7 +26,7 @@ node {
 
             lastCommit = sh(script: "/bin/sh ./echo_last_commit.sh", returnStdout: true).trim()
 
-            slackSend channel: '#nais-internal', message: "pipeline triggered:\n${lastCommit}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
+            slackSend channel: '#nais-ci', message: "pipeline triggered:\n${lastCommit}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
         }
         
         stage("deploy nais-ci") {
