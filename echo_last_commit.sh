@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOS="naisible nais-platform-apps nais-tpa nais-inventory"
+REPOS="naisible nais-platform-apps nais-tpa nais-inventory nais-yaml"
 REPO_WITH_TIMESTAMP=()
 
 # creates a list of tuples on the format <last changed timestamp since epoch>;<repo name>

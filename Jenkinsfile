@@ -20,6 +20,10 @@ node {
                 git credentialsId: 'navikt-ci', url: "https://github.com/navikt/nais-platform-apps.git"
             }
 
+            dir("nais-yaml") {
+                git credentialsId: 'navikt-ci', url: "https://github.com/navikt/nais-yaml.git"
+            }
+
             dir("nais-tpa") {
                 git credentialsId: 'navikt-ci', url: "https://github.com/navikt/nais-tpa.git"
             }
