@@ -44,7 +44,7 @@ node {
                 },
                 "dev-sbs" : {
                     build "nsync_preprod-sbs"
-                }
+                },
                 "dev-gke" : {
                      withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088', 'NO_PROXY=adeo.no']) {
                          withCredentials([string(credentialsId: 'nais-circleci', variable: 'TOKEN')]) {
