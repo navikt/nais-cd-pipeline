@@ -60,6 +60,22 @@ node {
                          }
                      }
                  }
+		slackSend channel: '#nais-ci', color: "good", message: "dev-gke  successfully nsynced :nais: ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
+
+        	if (currentBuild.result == null) {
+           		 currentBuild.result = "SUCCESS"
+            		currentBuild.description = "${clusterName} ok"
+        	}
+    		catch (e) {
+        		if (currentBuild.result == null) {
+            			currentBuild.result = "FAILURE"
+            			currentBuild.description = "${clusterName} failed"
+        		}	
+
+        		slackSend channel: '#nais-ci', color: "danger", message: ":shit: nsync of dev-gke failed: ${e.getMessage()}.\nSee log for more info ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
+        		throw e
+		}
+
             )
         }
 
