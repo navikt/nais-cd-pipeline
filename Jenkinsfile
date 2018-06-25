@@ -46,7 +46,8 @@ node {
                     build "nsync_preprod-sbs"
                 },
                 "dev-gke" : {
-                     withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088', 'NO_PROXY=adeo.no']) {
+                    try { 
+                    withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088', 'NO_PROXY=adeo.no']) {
                          withCredentials([string(credentialsId: 'nais-circleci', variable: 'TOKEN')]) {
                              // trigger circle-ci build and save the build number
                              def buildNum = sh(script: "curl -v -X POST --header \"Content-Type: application/json\" -d '{ \"build_parameters\": { \"CLUSTER_NAME\": \"nais-dev\", \"GCP_PROJECT_NAME\": \"nais-dev-206213\", \"CLUSTER_CONTEXT_NAME\": \"gke_nais-dev-206213_europe-west1_nais-dev\" }}' https://circleci.com/api/v1.1/project/github/nais/nais-gke?circle-token=${TOKEN} | jq .build_num", returnStdout: true).trim()
@@ -75,7 +76,7 @@ node {
         		slackSend channel: '#nais-ci', color: "danger", message: ":shit: nsync of dev-gke failed: ${e.getMessage()}.\nSee log for more info ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
         		throw e
 		    }
-		}
+i		}
 
             )
         }
