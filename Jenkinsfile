@@ -59,14 +59,14 @@ node {
                              sh("\$(curl -s https://circleci.com/api/v1.1/project/github/nais/nais-gke/${buildNum}?circle-token=${TOKEN} | jq '.outcome==\"success\"')")
                          }
                      }
-                 }
-		slackSend channel: '#nais-ci', color: "good", message: "dev-gke  successfully nsynced :nais: ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
+                 
+		     slackSend channel: '#nais-ci', color: "good", message: "dev-gke  successfully nsynced :nais: ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
 
-        	if (currentBuild.result == null) {
+        	     if (currentBuild.result == null) {
            		 currentBuild.result = "SUCCESS"
             		currentBuild.description = "${clusterName} ok"
-        	}
-    		catch (e) {
+        	     }
+    		     catch (e) {
         		if (currentBuild.result == null) {
             			currentBuild.result = "FAILURE"
             			currentBuild.description = "${clusterName} failed"
@@ -74,6 +74,7 @@ node {
 
         		slackSend channel: '#nais-ci', color: "danger", message: ":shit: nsync of dev-gke failed: ${e.getMessage()}.\nSee log for more info ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
         		throw e
+		    }
 		}
 
             )
