@@ -50,7 +50,7 @@ node {
                         withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088', 'NO_PROXY=adeo.no']) {
                              withCredentials([string(credentialsId: 'nais-circleci', variable: 'TOKEN')]) {
                                  // trigger circle-ci build and save the build number
-                                 def buildNum = sh(script: "curl -v -X POST --header \"Content-Type: application/json\" -d '{ \"build_parameters\": { \"CLUSTER_NAME\": \"nais-dev\", \"GCP_PROJECT_NAME\": \"nais-dev-206213\", \"CLUSTER_CONTEXT_NAME\": \"gke_nais-dev-206213_europe-west1_nais-dev\" }}' https://circleci.com/api/v1.1/project/github/nais/nais-gke?circle-token=${TOKEN} | jq .build_num", returnStdout: true).trim()
+                                 def buildNum = sh(script: "curl -v -X POST --header \"Content-Type: application/json\" -d '{ \"build_parameters\": { \"CLUSTER_NAME\": \"dev-gke\", \"GCP_PROJECT_NAME\": \"nais-dev-gke\", \"CLUSTER_CONTEXT_NAME\": \"gke_nais-dev-gke_europe-north1_dev-gke\" }}' https://circleci.com/api/v1.1/project/github/nais/nais-gke?circle-token=${TOKEN} | jq .build_num", returnStdout: true).trim()
                                  retry(15) {
                                      sleep 10
                                      // check if build is finished. Produces correct exit status (which results in a retry) by executing the output (either true or false) directly
