@@ -15,5 +15,5 @@ LAST_CHANGED_REPO=$(echo ${REPO_WITH_TIMESTAMP[@]} | tr " " "\n" | sort | tail -
 
 cd ${LAST_CHANGED_REPO}
 
-echo "Repo: ${REPO}"
+echo "Repo: ${LAST_CHANGED_REPO}"
 git log -1 && exit 0
