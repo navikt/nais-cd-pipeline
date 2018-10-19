@@ -75,7 +75,7 @@ node {
         }
 
         stage("deploy prod") {
-            parallell(
+            parallel (
                 "prod-fss": {
                     build "nsync_prod-fss"
                 },
