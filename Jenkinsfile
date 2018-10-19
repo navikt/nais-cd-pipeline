@@ -74,6 +74,17 @@ node {
             )
         }
 
+        stage("deploy prod") {
+            parallell(
+                "prod-fss": {
+                    build "nsync_prod-fss"
+                },
+                "prod-sbs": {
+                    build "nsync-prod-sbs"
+                }
+            )
+        }
+
         slackSend color: "good", channel: '#nais-ci', message: ":nais:-cd-pipeline ran successfully :thumbsup: ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
 
     } catch (e) {
