@@ -80,7 +80,7 @@ node {
                     build "nsync_prod-fss"
                 },
                 "prod-sbs": {
-                    build "nsync-prod-sbs"
+                    build "nsync_prod-sbs"
                 }
             )
         }
