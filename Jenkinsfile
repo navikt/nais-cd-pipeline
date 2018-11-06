@@ -1,5 +1,4 @@
-node {
-
+node { 
     def lastCommit
     
     try {
@@ -34,16 +33,16 @@ node {
         }
         
         stage("deploy nais-ci") {
-            build "nsync_nais-ci"
+            build job: "nsync_nais-ci", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
         }
 
         stage("deploy dev"){
             parallel (
                 "dev-fss" : {
-                    build "nsync_preprod-fss"
+                    build job: "nsync_preprod-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
                 "dev-sbs" : {
-                    build "nsync_preprod-sbs"
+                    build job: "nsync_preprod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
                 "dev-gke" : {
                     def buildUrl = "https://circleci.com/gh/nais/nais-gke/"
@@ -77,10 +76,10 @@ node {
         stage("deploy prod") {
             parallel (
                 "prod-fss": {
-                    build "nsync_prod-fss"
+                    build job: "nsync_prod-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
                 "prod-sbs": {
-                    build "nsync_prod-sbs"
+                    build job: "nsync_prod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
                 "prod-gke" : {
                     def buildUrl = "https://circleci.com/gh/nais/nais-gke/"
