@@ -44,7 +44,7 @@ node {
                 "dev-sbs" : {
                     build job: "nsync_preprod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
-                "dev-gcp" : {
+/*                "dev-gcp" : {
                     def buildUrl = "https://circleci.com/gh/nais/nais-gke/"
                    try {
                         withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088', 'NO_PROXY=adeo.no']) {
@@ -69,7 +69,7 @@ node {
 
                		throw e
                     }
-                }
+                } */
 /*                "dev-gke" : {
                     def buildUrl = "https://circleci.com/gh/nais/nais-gke/"
                    try { 
