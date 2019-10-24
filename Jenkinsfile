@@ -42,7 +42,7 @@ node {
                     build job: "nsync_preprod-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
                 "dev-sbs" : {
-                    build job: "nsync_preprod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
+                    build job: "nsync_dev-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
 /*                "dev-gcp" : {
                     def buildUrl = "https://circleci.com/gh/nais/nais-gke/"
