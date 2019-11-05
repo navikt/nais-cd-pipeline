@@ -35,6 +35,14 @@ node {
         stage("deploy nais-ci") {
             build job: "nsync_nais-ci", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
         }
+        
+        stage("deploy kubeflow"){
+            parallel (
+                "kubeflow" : {
+                    build job: "nsync-kubeflow", parameters: [booleanParam(name: 'skipNaisible', value: true ),booleanParam(name: 'skipUptimed', value: true )]
+                },
+            )
+        }
 
         stage("deploy dev"){
             parallel (
