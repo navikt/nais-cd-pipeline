@@ -35,15 +35,6 @@ node {
         stage("deploy nais-ci") {
             build job: "nsync_nais-ci", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
         }
-        
-        stage("deploy kubeflow") {
-            try {
-                build job: "nsync-kubeflow", parameters: [booleanParam(name: 'skipNaisible', value: true ),booleanParam(name: 'skipUptimed', value: true )]
-                slackSend color: "good", channel: '#naisflow-alerts', message: ":nais:-cd-pipeline ran successfully :thumbsup: ${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
-            } catch (e) {
-                slackSend color: "danger", channel: '#naisflow-alerts', message: "nais-cd-pipeline failed: ${e.getMessage()}\n${env.BUILD_URL}", teamDomain: 'nav-it', tokenCredentialId: 'slack_fasit_frontend'
-            }
-        }
 
         stage("deploy dev"){
             parallel (
