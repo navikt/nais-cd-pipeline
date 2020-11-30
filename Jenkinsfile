@@ -5,7 +5,7 @@ node {
         stage("init") {
             git url: "https://github.com/navikt/nais-cd-pipeline.git"
 
-            sh("rm -rf naisible nais-inventory nais-tpa nais-platform-apps")
+            sh("rm -rf naisible nais-inventory nais-yaml")
 
             dir("nais-inventory") {
                 git credentialsId: 'nais-inventory', url: "git@github.com:navikt/nais-inventory.git"
@@ -15,16 +15,8 @@ node {
                 git url: "https://github.com/nais/naisible.git"
             }
 
-            dir("nais-platform-apps") {
-                git credentialsId: 'nais-platform-apps', url: "git@github.com:navikt/nais-platform-apps.git"
-            }
-
             dir("nais-yaml") {
                 git credentialsId: 'nais-yaml', url: "git@github.com:navikt/nais-yaml.git"
-            }
-
-            dir("nais-tpa") {
-                git credentialsId: 'nais-tpa', url: "git@github.com:navikt/nais-tpa.git"
             }
 
             lastCommit = sh(script: "/bin/sh ./echo_last_commit.sh", returnStdout: true).trim()
