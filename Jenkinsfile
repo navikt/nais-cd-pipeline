@@ -42,10 +42,10 @@ node {
         stage("deploy prod") {
             parallel (
                 "prod-fss": {
-                    build job: "nsync_prod-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipnaisible )]
+                    build job: "nsync_prod-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 },
                 "prod-sbs": {
-                    build job: "nsync_prod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipnaisible )]
+                    build job: "nsync_prod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
                 }
             )
         }
