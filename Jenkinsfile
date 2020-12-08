@@ -21,16 +21,16 @@ node {
         }
         
         stage("deploy nais-ci") {
-            build job: "nsync_nais-ci", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
+            build job: "nsync_nais-ci"
         }
 
         stage("deploy dev"){
             parallel (
                 "dev-fss" : {
-                    build job: "nsync_dev-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
+                    build job: "nsync_dev-fss"
                 },
                 "dev-sbs" : {
-                    build job: "nsync_dev-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
+                    build job: "nsync_dev-sbs"
                 },
             )
         }
@@ -38,10 +38,10 @@ node {
         stage("deploy prod") {
             parallel (
                 "prod-fss": {
-                    build job: "nsync_prod-fss", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
+                    build job: "nsync_prod-fss"
                 },
                 "prod-sbs": {
-                    build job: "nsync_prod-sbs", parameters: [booleanParam(name: 'skipNaisible', value: params.skipNaisible )]
+                    build job: "nsync_prod-sbs"
                 }
             )
         }
